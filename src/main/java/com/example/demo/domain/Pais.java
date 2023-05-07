@@ -3,15 +3,20 @@ package com.example.demo.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="pais")
 public class Pais implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private long id;
+	@Id
+	private String id;
 	private String nome;
 	private String continente;
-	private long populacao;
+	private String populacao;
 	
-	public Pais(long id, String nome, String continente, long populacao) {
+	public Pais(String id, String nome, String continente, String populacao) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -22,11 +27,11 @@ public class Pais implements Serializable{
 	public Pais() {
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -46,11 +51,11 @@ public class Pais implements Serializable{
 		this.continente = continente;
 	}
 
-	public long getPopulacao() {
+	public String getPopulacao() {
 		return populacao;
 	}
 
-	public void setPopulacao(long populacao) {
+	public void setPopulacao(String populacao) {
 		this.populacao = populacao;
 	}
 
