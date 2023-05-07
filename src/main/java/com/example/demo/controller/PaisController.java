@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +32,8 @@ public class PaisController {
 	}
 	
 	@GetMapping(value="/{id}")
-	public ResponseEntity<Optional<Pais>> findById(@PathVariable String id){
-		Optional<Pais> pais = service.findById(id);
+	public ResponseEntity<Pais> findById(@PathVariable String id){
+		Pais pais = service.findById(id);
 		return ResponseEntity.ok().body(pais);
 	}
 	
@@ -49,5 +48,11 @@ public class PaisController {
 	public ResponseEntity<Void> delete(@PathVariable String id){
 	service.delete(id);
 	return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Pais pais, @PathVariable String id){
+		pais = service.update(pais);
+		return ResponseEntity.noContent().build();
 	}
 }

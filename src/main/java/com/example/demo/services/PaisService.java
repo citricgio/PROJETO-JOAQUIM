@@ -20,9 +20,9 @@ public class PaisService {
 		return repo.findAll();
 	}
 	
-	public Optional<Pais> findById(String id) {
+	public Pais findById(String id) {
 		Optional<Pais> pais = repo.findById(id);
-		return Optional.ofNullable(pais.orElseThrow(() -> new ObjectNotFoundException("País não encontrado")));
+		return pais.orElseThrow(() -> new ObjectNotFoundException("País não encontrado"));
 	}
 	
 	public Pais insert(Pais obj) {
@@ -33,5 +33,16 @@ public class PaisService {
 		findById(id);
 		repo.deleteById(id);
 	}
-
+	
+	public Pais update(Pais obj) {
+		Pais newPais = findById(obj.getId());
+		updateData(newPais, obj);
+		return repo.save(newPais);
+	}
+	
+	public void updateData(Pais newPais, Pais obj) {
+		newPais.setNome(obj.getNome());
+		newPais.setContinente(obj.getContinente());
+		newPais.setPopulacao(obj.getPopulacao());
+	}
 }
