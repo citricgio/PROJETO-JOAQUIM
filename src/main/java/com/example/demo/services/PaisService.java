@@ -24,5 +24,9 @@ public class PaisService {
 		Optional<Pais> pais = repo.findById(id);
 		return Optional.ofNullable(pais.orElseThrow(() -> new ObjectNotFoundException("País não encontrado")));
 	}
+	
+	public Pais insert(Pais obj) {
+		return repo.insert(obj);
+	}
 
 }
