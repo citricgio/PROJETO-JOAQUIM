@@ -6,6 +6,8 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.example.demo.dto.NacionalidadeDTO;
+
 @Document(collection="conta")
 public class ContaBancaria implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -15,13 +17,13 @@ public class ContaBancaria implements Serializable {
 	private String nomeTitular;
 	private String saldo;
 	private String nroAgencia;
-	private Pais nacionalidade;
+	private NacionalidadeDTO nacionalidade;
 	
 	public ContaBancaria() {
 		
 	}
 
-	public ContaBancaria(String id, String nomeTitular, String saldo, String nroAgencia, Pais nacionalidade) {
+	public ContaBancaria(String id, String nomeTitular, String saldo, String nroAgencia, NacionalidadeDTO nacionalidade) {
 		super();
 		this.id = id;
 		this.nomeTitular = nomeTitular;
@@ -62,11 +64,11 @@ public class ContaBancaria implements Serializable {
 		this.nroAgencia = nroAgencia;
 	}
 	
-	public Pais getNacionalidade() {
+	public NacionalidadeDTO getNacionalidade() {
 		return nacionalidade;
 	}
 
-	public void setNacionalidade(Pais nacionalidade) {
+	public void setNacionalidade(NacionalidadeDTO nacionalidade) {
 		this.nacionalidade = nacionalidade;
 	}
 

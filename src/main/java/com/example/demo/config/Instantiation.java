@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.example.demo.domain.ContaBancaria;
 import com.example.demo.domain.Pais;
+import com.example.demo.dto.NacionalidadeDTO;
 import com.example.demo.repository.ContaBancariaRepository;
 import com.example.demo.repository.PaisRepository;
 
@@ -30,10 +31,11 @@ public class Instantiation implements CommandLineRunner{
 		Pais chile = new Pais(null, "Chile", "América do Sul", "1500");
 		Pais mexico = new Pais(null, "México", "América Central", "39123");
 			
-		ContaBancaria conta1 = new ContaBancaria(null, "Agenor Vieira", "100.000", "101", brasil);
-		ContaBancaria conta2 = new ContaBancaria(null, "Giovanna Micher", "100.000.000.000", "102", brasil);
-
 		paisRepository.saveAll(Arrays.asList(brasil, chile, mexico));
+		
+		ContaBancaria conta1 = new ContaBancaria(null, "Agenor Vieira", "100.000", "101", new NacionalidadeDTO(brasil));
+		ContaBancaria conta2 = new ContaBancaria(null, "Giovanna Micher", "100.000.000.000", "102", new NacionalidadeDTO(brasil));
+		
 		contaRepository.saveAll(Arrays.asList(conta1, conta2));
 
 	}
