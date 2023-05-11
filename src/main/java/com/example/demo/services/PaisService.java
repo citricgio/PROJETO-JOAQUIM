@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Pais;
+import com.example.demo.dto.PaisDTO;
 import com.example.demo.repository.PaisRepository;
 import com.example.demo.services.exception.ObjectNotFoundException;
 
@@ -27,6 +28,10 @@ public class PaisService {
 	
 	public Pais insert(Pais obj) {
 		return repo.insert(obj);
+	}
+	
+	public Pais fromDTO(PaisDTO objDto) {
+		return new Pais(objDto.getId(), objDto.getNome(), objDto.getContinente(), objDto.getPopulacao());
 	}
 	
 	public void delete(String id) {

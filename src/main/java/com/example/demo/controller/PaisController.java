@@ -36,14 +36,15 @@ public class PaisController {
 	}
 	
 	@GetMapping(value="/{id}")
-	public ResponseEntity<Pais> findById(@PathVariable String id){
+	public ResponseEntity<PaisDTO> findById(@PathVariable String id){
 		Pais pais = service.findById(id);
-		return ResponseEntity.ok().body(pais);
+		return ResponseEntity.ok().body(new PaisDTO(pais));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody Pais pais){
-		Pais obj = service.insert(pais);
+	public ResponseEntity<Void> insert(@RequestBody PaisDTO pais){
+		Pais obj = service.fromDTO(pais);
+		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
@@ -55,7 +56,9 @@ public class PaisController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Pais pais, @PathVariable String id){
+	public ResponseEntity<Void> update(@RequestBody PaisDTO objDto, @PathVariable String id){
+		Pais pais = service.fromDTO(objDto);
+		pais.setId(id);
 		pais = service.update(pais);
 		return ResponseEntity.noContent().build();
 	}
