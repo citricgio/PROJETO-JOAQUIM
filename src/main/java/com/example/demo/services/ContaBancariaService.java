@@ -20,8 +20,9 @@ public class ContaBancariaService {
 		Optional<ContaBancaria> conta = repo.findById(id);
 		return conta.orElseThrow(() -> new ObjectNotFoundException("Conta não encontrada"));
 	}
-
-	public List<ContaBancaria> findByFirstName(String name){
-		return repo.findByFirstnameContaining(name);
+	
+	public List<ContaBancaria> findByNomeTitular(String name) {
+		return repo.findByNomeTitularContaining(name);
 	}
+
 }

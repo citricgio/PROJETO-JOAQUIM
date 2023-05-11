@@ -10,5 +10,5 @@ import com.example.demo.domain.ContaBancaria;
 @Repository
 public interface ContaBancariaRepository extends MongoRepository<ContaBancaria, String> {
 	
-	List<ContaBancaria> findByFirstnameContaining(String name);
+	List<ContaBancaria> findByNomeTitularContaining(String name);
 }

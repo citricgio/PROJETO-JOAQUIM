@@ -28,9 +28,9 @@ public class ContaBancariaController {
 	}
 	
 	@GetMapping(value="/namesearch")
-	public ResponseEntity<List<ContaBancaria>> findByName(@RequestParam(value="text", defaultValue="") String name){
+	public ResponseEntity<List<ContaBancaria>> findByName(@RequestParam(value="text", defaultValue="")String name){
 		name = URL.decodeParam(name);
-		List<ContaBancaria> list = service.findByFirstName(name);
+		List<ContaBancaria> list = service.findByNomeTitular(name);
 		return ResponseEntity.ok().body(list);
 	}
 	
