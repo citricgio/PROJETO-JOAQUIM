@@ -37,6 +37,7 @@ public class Instantiation implements CommandLineRunner{
 		ContaBancaria conta2 = new ContaBancaria(null, "Giovanna Micher", "100.000.000.000", "102", new NacionalidadeDTO(brasil));
 		
 		contaRepository.saveAll(Arrays.asList(conta1, conta2));
-
+		brasil.getContas().addAll(Arrays.asList(conta1, conta2));
+		paisRepository.save(brasil);
 	}
 }
