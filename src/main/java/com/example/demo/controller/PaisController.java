@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.example.demo.domain.ContaBancaria;
 import com.example.demo.domain.Pais;
 import com.example.demo.dto.PaisDTO;
 import com.example.demo.services.PaisService;
@@ -61,5 +62,12 @@ public class PaisController {
 		pais.setId(id);
 		pais = service.update(pais);
 		return ResponseEntity.noContent().build();
+	}
+	
+	//retorna as contas de um país
+	@GetMapping(value="/{id}/contas")
+	public ResponseEntity<List<ContaBancaria>> findContas(@PathVariable String id){
+		Pais pais = service.findById(id);
+		return ResponseEntity.ok().body(pais.getContas());
 	}
 }
