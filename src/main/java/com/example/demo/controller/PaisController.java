@@ -27,7 +27,6 @@ public class PaisController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<Pais>> findAll(){
 		List<Pais> list = service.findAll();
-		
 		return ResponseEntity.ok().body(list);
 	}
 	

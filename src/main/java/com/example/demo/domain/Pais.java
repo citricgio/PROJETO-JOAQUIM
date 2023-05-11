@@ -1,9 +1,12 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="pais")
@@ -15,6 +18,9 @@ public class Pais implements Serializable{
 	private String nome;
 	private String continente;
 	private String populacao;
+	
+	@DBRef(lazy = true)
+	private List<ContaBancaria> contas = new ArrayList<>();
 	
 	public Pais(String id, String nome, String continente, String populacao) {
 		super();
@@ -58,6 +64,14 @@ public class Pais implements Serializable{
 	public void setPopulacao(String populacao) {
 		this.populacao = populacao;
 	}
+	
+	public List<ContaBancaria> getContas() {
+		return contas;
+	}
+
+	public void setContas(List<ContaBancaria> contas) {
+		this.contas = contas;
+	}	
 
 	@Override
 	public int hashCode() {
@@ -74,5 +88,7 @@ public class Pais implements Serializable{
 			return false;
 		Pais other = (Pais) obj;
 		return id == other.id;
-	}	
+	}
+
+
 }
